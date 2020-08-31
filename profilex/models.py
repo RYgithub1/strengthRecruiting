@@ -8,15 +8,26 @@ class Post(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     title = models.CharField('NAME', max_length=200)
-    text = models.TextField('Strong Point', blank=True)
+    text = models.TextField('STRONG POINT', blank=True)
 
     thumbnail = models.ImageField(
-        'Thumbnails', upload_to='thumbnails/', null=True, blank=True)
+        'THUMBNAILS', upload_to='thumbnails/', null=True, blank=True)
     upload = models.FileField(
-        'Video', upload_to='uploads/%Y/%m/%d/', null=True)
+        'VIDEO', upload_to='uploads/%Y/%m/%d/', null=True)
 
     created_date = models.DateTimeField('Created Date', auto_now_add=True)
     updated_date = models.DateTimeField('Updated Date', auto_now=True)
 
     def __str__(self):
         return self.title
+
+
+class Scout(models.Model):
+    post = models.ForeignKey(
+        'profilex.Post', on_delete=models.CASCADE, related_name='scouts')
+    author = models.CharField('NAME', max_length=200)
+    text = models.TextField('SCOUT')
+    created_date = models.DateTimeField('Created Date', auto_now_add=True)
+
+    def __str__(self):
+        return self.text

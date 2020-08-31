@@ -16,6 +16,7 @@ Including another URLconf
 # docstring＝三重クオート（'''や"""）で囲まれたコメント行。ファイル、クラス、またはメソッドの先頭に記述
 
 from django.contrib import admin
+from django.contrib.auth import views
 from django.urls import path, include
 
 # メディア用
@@ -25,7 +26,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # アプリ側リダイレクト
+    path('accounts/login/', views.LoginView.as_view(), name='login'),
+    path('accounts/logout/', views.LogoutView.as_view(next_page='/'), name='logout'),
+    # アプリ側にリダイレクト
     path('', include('profilex.urls')),
 ]
 
