@@ -21,17 +21,20 @@
   <body>
     <div class="page-header">
       {% if user.is_authenticated %}
-      <a href="{% url 'post_new' %}" class="top-menu"
-        ><span class="glyphicon glyphicon-plus"></span
+      <a href="{% url 'logout' %}" class="top-menu"
+        ><span class="glyphicon glyphicon-log-out"></span
       ></a>
+      <a href="{% url 'post_new' %}" class="top-menu"
+        ><span class="glyphicon glyphicon-home"></span
+      ></a>
+
       <p class="top-menu">
-        Enjoy! {{ user.username }}
-        <small>(<a href="{% url 'logout' %}">Log out</a>)</small>
+        <strong>Hi there. </strong><small>{{ user.username }}</small>
       </p>
 
       {% else %}
       <a href="{% url 'login' %}" class="top-menu"
-        ><span class="glyphicon glyphicon-lock"></span
+        ><span class="glyphicon glyphicon-log-in"></span
       ></a>
       <a href="{% url 'signup' %}" class="top-menu"
         ><span class="glyphicon glyphicon-user"></span

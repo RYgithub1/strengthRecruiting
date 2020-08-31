@@ -1,10 +1,10 @@
-{% extends 'profilex/base.html' %} {% load static%} {% block content %} --- Sort
-by Date --- {%for post in posts %}
+{% extends 'profilex/base.html' %} {% load static%} {% block content %} {%for
+post in posts %}
 
 <hr />
 <div class="post">
   <div class="date">
-    <p>updated: {{ post.updated_date }}</p>
+    <p>created: {{ post.created_date }}</p>
   </div>
   <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
   <h5>Scouts: {{ post.scouts.count }}</h5>
@@ -26,4 +26,5 @@ by Date --- {%for post in posts %}
     {% endif %}
   </a>
 </div>
+
 {% endfor %} {% endblock %}

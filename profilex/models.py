@@ -3,6 +3,7 @@ from django.db import models
 from django.utils import timezone
 
 
+# models.pyでFieldを定義 -> ModelForm(forms.py)でフォームを作成
 class Post(models.Model):
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
