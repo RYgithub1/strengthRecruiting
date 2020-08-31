@@ -1,5 +1,16 @@
+# サインアップ
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+
+# プロフィール/スカウト
 from django import forms
 from .models import Post, Scout
+
+
+class SignupForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1', 'password2',)
 
 
 class PostForm(forms.ModelForm):

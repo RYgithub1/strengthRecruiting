@@ -19,6 +19,9 @@ from django.contrib import admin
 from django.contrib.auth import views
 from django.urls import path, include
 
+# サインアップ
+from profilex.views import SignUp
+
 # メディア用
 from django.conf import settings
 from django.conf.urls.static import static
@@ -26,9 +29,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/signup/', SignUp.as_view(), name='signup'),
     path('accounts/login/', views.LoginView.as_view(), name='login'),
     path('accounts/logout/', views.LogoutView.as_view(next_page='/'), name='logout'),
-    # アプリ側にリダイレクト
+    # アプリ側へリダイレクト
     path('', include('profilex.urls')),
 ]
 

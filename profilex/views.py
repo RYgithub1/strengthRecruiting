@@ -1,9 +1,30 @@
+# サインアップ
+from django.contrib.auth import login
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView
+
+# ログイン
 from django.contrib.auth.decorators import login_required
 
+# プロフィール/スカウト
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Post
-from .forms import PostForm, ScoutForm
+from .forms import PostForm, ScoutForm, SignupForm
+
+
+# サインアップ
+class SignUp(CreateView):
+    form_class = SignupForm
+    template_name = "registration/signup.html"
+    success_url = reverse_lazy('post_list')
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        self.object = user
+        return HttpResponseRedirect(self.get_success_url())
 
 
 # プロフィール一覧
