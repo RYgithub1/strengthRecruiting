@@ -3,6 +3,7 @@ from django.db import models
 from django.utils import timezone
 
 
+# ModelFormで、フォームの結果をモデルに保存可能
 # models.pyでFieldを定義 -> ModelForm(forms.py)でフォームを作成
 class Post(models.Model):
     author = models.ForeignKey(

@@ -1,47 +1,48 @@
-{% extends 'profilex/base.html' %} {% block content %}
+{% extends 'profilex/base.html' %}
+{% block content %}
 
-<hr />
-<div class="post">
-  {% if post.updated_date %}
-  <div class="date">
-    <p>Updated Date: {{ post.updated_date }}</p>
+
+  <hr />
+  <div class="post">
+    {% if post.updated_date %}
+      <div class="date">
+        <p>Updated Date: {{ post.updated_date }}</p>
+      </div>
+    {% else %}
+      <div class="date">
+        <p>Created Date: {{ post.created_date }}</p>
+      </div>
+    {% endif %}
+
+    {% if user.is_authenticated and request.user.id == post.author.id %}
+      <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+      <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+    {% endif %}
+
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.text|linebreaksbr}}</p>
+    <div class="embed-responsive embed-responsive-16by9">
+      <video controls class="embed-responsive-item" src="{{ post.upload.url }}"></video>
+    </div>
   </div>
+  <hr />
+
+  {% if user.is_authenticated and request.user.id == post.author.id %}
+    <h5>Scouts: {{ post.scouts.count }}</h5>
+    {% for scout in post.scouts.all %}
+      <div class="scout">
+        <div class="date">{{ scout.created_date }}</div>
+        <strong>{{ scout.author }}</strong>
+        <p>{{ scout.text|linebreaks }}</p>
+      </div>
+    {% empty %}
+      <p>No scout here yet.</p>
+    {% endfor %}
   {% else %}
-  <div class="date">
-    <p>Created Date: {{ post.created_date }}</p>
-  </div>
-
-  {% endif %} {% if user.is_authenticated %}
-  <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"
-    ><span class="glyphicon glyphicon-pencil"></span
-  ></a>
-  <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"
-    ><span class="glyphicon glyphicon-remove"></span
-  ></a>
+    <a class="btn btn-default" href="{% url 'add_scout_to_post' pk=post.pk %}">Scouting</a>
+    <h5>Scouts: {{ post.scouts.count }}</h5>
   {% endif %}
-  <h1>{{ post.title }}</h1>
-  <p>{{ post.text|linebreaksbr}}</p>
-  <div class="embed-responsive embed-responsive-16by9">
-    <video
-      controls
-      class="embed-responsive-item"
-      src="{{ post.upload.url }}"
-    ></video>
-  </div>
-</div>
-<hr />
+  <hr />
 
-<a class="btn btn-default" href="{% url 'add_scout_to_post' pk=post.pk %}"
-  >Scouting</a
->
 
-<h5>Scouts: {{ post.scouts.count }}</h5>
-{% for scout in post.scouts.all %}
-<div class="scout">
-  <div class="date">{{ scout.created_date }}</div>
-  <strong>{{ scout.author }}</strong>
-  <p>{{ scout.text|linebreaks }}</p>
-</div>
-{% empty %}
-<p>No scout here yet.</p>
-{% endfor %} {% endblock %}
+{% endblock %}

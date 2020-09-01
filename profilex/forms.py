@@ -13,6 +13,7 @@ class SignupForm(UserCreationForm):
         fields = ('username', 'email', 'password1', 'password2',)
 
 
+# ModelFormで、フォームの結果をモデルに保存可能
 # models.pyでFieldを定義 -> ModelForm(forms.py)でフォームを作成
 class PostForm(forms.ModelForm):
     class Meta:

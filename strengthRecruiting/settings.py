@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'profilex.apps.ProfilexConfig',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

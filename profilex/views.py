@@ -13,6 +13,8 @@ from django.utils import timezone
 from .models import Post
 from .forms import PostForm, ScoutForm, SignupForm
 
+import mojimoji
+
 
 # サインアップ
 class SignUp(CreateView):

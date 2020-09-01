@@ -1,10 +1,12 @@
-{% extends 'profilex/base.html' %} {% block content %}
+{% extends 'profilex/base.html' %}
+{% block content %}
 
-<h2>Profile</h2>
 
-<form method="POST" class="post-form" , enctype="multipart/form-data">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit" class="save btn btn-default">Save</button>
-</form>
+  <h2>Profile</h2>
+  <form method="POST" class="post-form" , enctype="multipart/form-data">
+    {% csrf_token %} {{ form.as_p }}
+    <button type="submit" class="save btn btn-default">Save</button>
+  </form>
+
 
 {% endblock %}

@@ -1,31 +1,28 @@
-{% extends 'profilex/base.html' %} {% load static%} {% block content %}
-<em> --- Sort by Date --- </em>
-{%for post in posts %}
+{% extends 'profilex/base.html' %}
+{% load static%}
+{% block content %}
 
-<hr />
-<div class="post">
-  <div class="date">
-    <p>created: {{ post.created_date }}</p>
-  </div>
-  <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
-  <h5>Scouts: {{ post.scouts.count }}</h5>
-  <p>{{ post.text|linebreaksbr }}</p>
 
-  <a href="{% url 'post_detail' pk=post.pk %}">
-    {% if post.thumbnail %}
-    <img
-      class="img-thumbnail"
-      src="{{ post.thumbnail.url }}"
-      alt="{{ post.title }}"
-    />
-    {% else %}
-    <img
-      class="img-thumbnail"
-      src="{% static 'noThumbnail.jpg' %}"
-      alt="{{ post.title }}"
-    />
-    {% endif %}
-  </a>
-</div>
+  <em> --- Sort by Date --- </em>
+  {%for post in posts %}
+    <hr />
+    <div class="post">
+      <div class="date">
+        <p>created: {{ post.created_date }}</p>
+      </div>
+      <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+      <h5>Scouts: {{ post.scouts.count }}</h5>
+      <p>{{ post.text|linebreaksbr }}</p>
 
-{% endfor %} {% endblock %}
+      <a href="{% url 'post_detail' pk=post.pk %}">
+        {% if post.thumbnail %}
+          <img class="img-thumbnail" src="{{ post.thumbnail.url }}" alt="{{ post.title }}" />
+        {% else %}
+          <img class="img-thumbnail" src="{% static 'noThumbnail.jpg' %}" alt="{{ post.title }}" />
+        {% endif %}
+      </a>
+    </div>
+  {% endfor %}
+
+
+{% endblock %}

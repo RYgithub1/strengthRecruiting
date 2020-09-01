@@ -1,52 +1,39 @@
 {% load static %}
 
+
 <html>
   <head>
     <title>Strength Recruiting</title>
-    <link
-      rel="stylesheet"
-      href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"
-    />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
     <link rel="stylesheet" href="{% static 'css/profilex.css' %}" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Audiowide&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Audiowide&display=swap" rel="stylesheet" />
   </head>
 
   <body>
     <div class="page-header">
+      {% comment %} multi strength {% endcomment %}
+      {% comment %} 既ログイン {% endcomment %}
       {% if user.is_authenticated %}
-      <a href="{% url 'logout' %}" class="top-menu"
-        ><span class="glyphicon glyphicon-log-out"></span
-      ></a>
-      <a href="{% url 'post_new' %}" class="top-menu"
-        ><span class="glyphicon glyphicon-home"></span
-      ></a>
-
-      <p class="top-menu">
-        <strong>Hi there. </strong><small>{{ user.username }}</small>
-      </p>
-
+        <a href="{% url 'logout' %}" class="top-menu"><span class="glyphicon glyphicon-log-out"></span></a>
+        <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-home"></span></a>
+        <p class="top-menu"><strong>Hi there. </strong><small>{{ user.username }}</small></p>
+      {% comment %} 未ログイン {% endcomment %}
       {% else %}
-      <a href="{% url 'login' %}" class="top-menu"
-        ><span class="glyphicon glyphicon-log-in"></span
-      ></a>
-      <a href="{% url 'signup' %}" class="top-menu"
-        ><span class="glyphicon glyphicon-user"></span
-      ></a>
-
+        <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-log-in"></span></a>
+        <a href="{% url 'signup' %}" class="top-menu"><span class="glyphicon glyphicon-user"></span></a>
       {% endif %}
+
       <h1><a href="/">Strength Recruiting</a></h1>
     </div>
+
     <div class="content container">
       <div class="row">
-        <div class="col-md-8">{% block content %} {% endblock %}</div>
+        <div class="col-md-8">
+          {% block content %} {% endblock %}
+        </div>
       </div>
     </div>
+
   </body>
 </html>
