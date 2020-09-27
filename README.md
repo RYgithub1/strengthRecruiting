@@ -165,7 +165,7 @@ _Strength Recruiting!_
 
 | Column       | Type   | Options                        |
 | ------------ | ------ | ------------------------------ |
-| post         | string | null: False, ForeignKey: True |
+| post         | string | null: False, ForeignKey: True  |
 | author       | string | max_length: 200                |
 | text         | string |                                |
 | created_date | string | auto_now_add=True              |
